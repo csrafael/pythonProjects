@@ -54,12 +54,8 @@ def busca_gulosa (grafo, inicio, caminho):
 
     caminho.append(inicio)
 
-    print("VERTICE ", grafo[inicio])
-    print("HEURISTICA ", grafo[inicio]['h'])
-
     if (grafo[inicio]['h'] == 0):
         return caminho;
-
 
     for i in range(len(grafo[inicio]["vizinhos"])):
         vizinhos.append(grafo[ grafo[inicio]["vizinhos"][i] ])
@@ -68,5 +64,27 @@ def busca_gulosa (grafo, inicio, caminho):
 
     return busca_gulosa(grafo,vizinhos[0]["v"],caminho)
 
-def busca_aEstrela ():
-    print("OI")
+def busca_aEstrela (grafo, inicio, caminho, fila, dist):
+
+    if (len(caminho)>0 and grafo[caminho[-1]]['h'] == 0):
+        return caminho
+
+    caminho.append(inicio)
+
+    if (grafo[inicio]['h'] == 0):
+        return caminho;
+
+    for i in range(len(grafo[inicio]["vizinhos"])):
+        grafo[ grafo[inicio]["vizinhos"][i] ]["f"] = dist + grafo[inicio]["dist"][i] + grafo[ grafo[inicio]["vizinhos"][i] ]['h']
+        fila.append(grafo[ grafo[inicio]["vizinhos"][i] ])
+
+    fila.sort(key= lambda x:x["f"])
+
+    if (fila[0]["v"] in grafo[inicio]["vizinhos"]):
+        indexVizinho = grafo[inicio]["vizinhos"].index(fila[0]["v"])
+        novaDist = grafo[inicio]["dist"][indexVizinho] + dist
+    else:
+        novaDist =  fila[0]["f"] - fila[0]["h"]
+
+    vertice = fila.pop(0);
+    return busca_aEstrela(grafo,vertice["v"],caminho, fila, novaDist)
