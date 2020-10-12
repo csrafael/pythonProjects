@@ -1,3 +1,6 @@
+def sortH(e):
+  return e['h']
+
 def backtrace(pais, inicio, fim):
     caminho = [fim]
     while caminho[-1] != inicio:
@@ -43,7 +46,27 @@ def busca_profundidade (grafo, inicio, fim, caminho):
 
     return novoCaminho
 
-def busca_gulosa (grafo, inicio, heuristica):
+def busca_gulosa (grafo, inicio, caminho):
+    vizinhos = []
 
+    if (len(caminho)>0 and grafo[caminho[-1]]['h'] == 0):
+        return caminho
+
+    caminho.append(inicio)
+
+    print("VERTICE ", grafo[inicio])
+    print("HEURISTICA ", grafo[inicio]['h'])
+
+    if (grafo[inicio]['h'] == 0):
+        return caminho;
+
+
+    for i in range(len(grafo[inicio]["vizinhos"])):
+        vizinhos.append(grafo[ grafo[inicio]["vizinhos"][i] ])
+
+    vizinhos.sort(key= lambda x:x['h'])
+
+    return busca_gulosa(grafo,vizinhos[0]["v"],caminho)
 
 def busca_aEstrela ():
+    print("OI")

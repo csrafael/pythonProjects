@@ -24,28 +24,31 @@ listaAdj = [
 ]
 
 grafo = [
-    {"id":"0","nome":"Oradea", "vizinhos":[1,7]},
-    {"id":"1","nome":"Zerind", "vizinhos":[0,2]},
-    {"id":"2","nome":"Arad", "vizinhos":[1,3,7]},
-    {"id":"3","nome":"Timisoara", "vizinhos":[2,4]},
-    {"id":"4","nome":"Lugoj", "vizinhos":[3,5]},
-    {"id":"5","nome":"Mehadia", "vizinhos":[4,6]},
-    {"id":"6","nome":"Dobreta", "vizinhos":[5,9]},
-    {"id":"7","nome":"Sibiu", "vizinhos":[0,2,8,10]},
-    {"id":"8","nome":"Rimnicu Vilcea", "vizinhos":[7,9,11]},
-    {"id":"9","nome":"Craiova", "vizinhos":[6,8,11]},
-    {"id":"10","nome":"Fagaras", "vizinhos":[7,12]},
-    {"id":"11","nome":"Pitesti", "vizinhos":[8,9,12]},
-    {"id":"12","nome":"Bucarest", "vizinhos":[10,11,13,14]},
-    {"id":"13","nome":"Giurgiu", "vizinhos":[12]},
-    {"id":"14","nome":"Urziceni", "vizinhos":[12,15,18]},
-    {"id":"15","nome":"Vaslui", "vizinhos":[14,16]},
-    {"id":"16","nome":"Lasi", "vizinhos":[15, 17]},
-    {"id":"17","nome":"Neamt", "vizinhos":[16]},
-    {"id":"18","nome":"Hirsora", "vizinhos":[14, 19]},
-    {"id":"19","nome":"Eforie", "vizinhos":[18]}
+    {"v":0,"nome":"Oradea","h":380 , "vizinhos":[1,7]},
+    {"v":1,"nome":"Zerind","h":374 , "vizinhos":[0,2]},
+    {"v":2,"nome":"Arad","h":366 , "vizinhos":[1,3,7]},
+    {"v":3,"nome":"Timisoara","h":329 , "vizinhos":[2,4]},
+    {"v":4,"nome":"Lugoj","h":244 , "vizinhos":[3,5]},
+    {"v":5,"nome":"Mehadia","h":241 , "vizinhos":[4,6]},
+    {"v":6,"nome":"Dobreta","h":242 , "vizinhos":[5,9]},
+    {"v":7,"nome":"Sibiu","h":253 , "vizinhos":[0,2,8,10]},
+    {"v":8,"nome":"Rimnicu Vilcea","h":193 , "vizinhos":[7,9,11]},
+    {"v":9,"nome":"Craiova","h":160 , "vizinhos":[6,8,11]},
+    {"v":10,"nome":"Fagaras","h":176 , "vizinhos":[7,12]},
+    {"v":11,"nome":"Pitesti","h":100 , "vizinhos":[8,9,12]},
+    {"v":12,"nome":"Bucarest","h":0 , "vizinhos":[10,11,13,14]},
+    {"v":13,"nome":"Giurgiu","h":77 , "vizinhos":[12]},
+    {"v":14,"nome":"Urziceni","h":80 , "vizinhos":[12,15,18]},
+    {"v":15,"nome":"Vaslui","h":199 , "vizinhos":[14,16]},
+    {"v":16,"nome":"Iasi","h":226 , "vizinhos":[15, 17]},
+    {"v":17,"nome":"Neamt","h":234 , "vizinhos":[16]},
+    {"v":18,"nome":"Hirsova","h":151 , "vizinhos":[14, 19]},
+    {"v":19,"nome":"Eforie","h":161 , "vizinhos":[18]}
 ]
 
+
 caminho = []
-buscas.busca_largura(listaAdj, 2, 12)
-print (buscas.busca_profundidade(listaAdj,2,12,caminho))
+#buscas.busca_largura(listaAdj, 2, 12)
+#print (buscas.busca_profundidade(listaAdj,2,12,caminho))
+
+print ( buscas.busca_gulosa(grafo, 2, caminho) )
