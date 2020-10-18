@@ -47,12 +47,15 @@ grafo = [
 ]
 
 
-caminho = []
+caminho1 = []
+caminho2 = []
+caminho3 = []
 fila = []
 dist = 0
 buscas.busca_largura(listaAdj, 2, 12)
-print (buscas.busca_profundidade(listaAdj,2,12,caminho))
 
-print ( buscas.busca_gulosa(grafo, 2, caminho) )
+print (buscas.busca_profundidade(listaAdj,2,12,caminho1))
 
-print ( buscas.busca_aEstrela(grafo, 2, caminho, fila, dist) )
+print ( buscas.busca_gulosa(grafo, 2, caminho2) )
+
+print ( buscas.busca_aEstrela(grafo, 2, caminho3, fila, dist) )

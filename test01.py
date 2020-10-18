@@ -1,6 +1,3 @@
-class test:
-    def __init__(self, texto):
-        self.texto = texto
-
-    def imprimi(self):
-        print(self.texto)
+print('Enter your name:')
+x = input()
+print('Hello, ' + x)
