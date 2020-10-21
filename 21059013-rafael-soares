@@ -6,16 +6,75 @@
 # resultará numa festa ÉPICA, onde todos os convidados se conhecem.
 #
 # - Objetivo do programa: indentificar se o subgrafo induzido (lista de
-# convidados) é completo.
+# convidados) é completo. Desta forma, não estou considerando laços e
+# arestas paralelas
 #
 # - Entrada:
 # - Saída:
 # - Descrição:
 
+def churrasEPICO (grafo, listaC):
+    resultados = []
+
+    for i in range(len(listaC)):
+        if len(listaC[i]) == 1 or listaC[i][0] == 1 :
+            resultados.append("SIM")
+            continue
+
+        resultado = "SIM"
+        convidados = []
+        listaC[i].pop(0)
+        convidados.extend(list(listaC[i]))
+        print(convidados)
+
+        for j in range(len(listaC[i])):
+            vertice = int(convidados.pop(j))
+            amigos = grafo[vertice]
+
+            for k in range(len(convidados)):
+                if int(convidados[k]) not in amigos:
+                    resultado = "NAO"
+                    break
+
+            convidados.insert(j,vertice)
+            if (resultado == "NAO"):
+                break
+
+        resultados.append(resultado)
+
+    return resultados
 
 n = 1               #numero de vertices - numero de amigos
 m = 0               #numero de arestas  - os amigos sao amigos no haiku
 k = 0               #quantidade de lista de amigos
-l = 0               #quantidade de amigos de uma lista
-arestas = []        #matriz para armazenar as arestas
+grafo = []          #matriz para armazenar a lista de adjacentes
+guests = []         #listas de convidados
 resultados = []
+
+n = int(input())
+m = int(input())
+
+for i in range(n):
+    grafo.append([])
+
+for i in range(m):
+    aresta = input()
+    edges = aresta.split(" ")
+
+    u = int(edges[0])
+    v = int(edges[1])
+
+    grafo[u].append(v)
+    grafo[v].append(u)
+
+k = int(input())
+
+for i in range(k):
+    l = input()
+    guests.append(l.split(" "))
+    resultados.append("SIM")
+
+resultados = churrasEPICO(grafo,guests)
+
+for result in resultados:
+    print(result)
