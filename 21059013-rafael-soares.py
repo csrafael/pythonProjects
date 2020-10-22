@@ -9,10 +9,13 @@
 # convidados) é completo. Desta forma, não estou considerando laços e
 # arestas paralelas
 #
-# - Entrada:
-# - Saída:
-# - Descrição:
+# - Descrição: percorre as listas de convidados verificando completude
+# por vacuidade. Em seguida, seleciona um vértice da lista para depois verificar
+# se os demais vértices da lista estão presentes no conjunto de vértices
+# adjacentes
 
+#@Params    grafo definido por lista de adjacentes
+#           listas de contatos no formato de matriz
 def churrasEPICO (grafo, listaC):
     resultados = []
 
@@ -25,7 +28,6 @@ def churrasEPICO (grafo, listaC):
         convidados = []
         listaC[i].pop(0)
         convidados.extend(list(listaC[i]))
-        print(convidados)
 
         for j in range(len(listaC[i])):
             vertice = int(convidados.pop(j))
@@ -49,7 +51,7 @@ m = 0               #numero de arestas  - os amigos sao amigos no haiku
 k = 0               #quantidade de lista de amigos
 grafo = []          #matriz para armazenar a lista de adjacentes
 guests = []         #listas de convidados
-resultados = []
+resultados = []     #lista que receberá os valores resultados
 
 n = int(input())
 m = int(input())
