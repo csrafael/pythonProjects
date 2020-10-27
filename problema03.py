@@ -9,32 +9,42 @@
 # - Objetivo do programa: Identificar a quantidade de componentes de um grafo e
 # retornar a quantidade de arestas necessárias para ter apenas um componente.
 #
-# - Descrição:
+# - Descrição: Utilizado um grafo representado por lista de adjacentes, por se
+# tratar de grafos simples e desconexo, devido as condições do problema.
+# Foi adaptado a BFS para contar quantas componentes já foram percorridas.
+# Se não tiver mais ninguém na fila e a BFS não percorreu todos os nós do grafo,
+# Então acrescente o contator e visite o próximo vértice não verificado.
 
 #@Params    grafo definido por lista de adjacentes
 def voosNecessarios (grafo):
     voos = 1 # número de componentes
-
+    #sabendo que para um grafo de n componentes, serão necessárias n-1 arestas
+    #para deixar o grafo conexo
     voos = contadorComponentes(grafo,0) - 1
 
     print ("# de novos voos:",voos)
 
+#@Params    grafo - grafo definido por lista de adjacentes
+#           inicio - número do vertice que será a raiz
 def contadorComponentes (grafo, inicio):
-    fila_busca = [inicio]
-    naoVisitados = []
-    componentes = 1
+    fila_busca = [inicio] # fila iniciada com vértice raiz
+    naoVisitados = []     # Lista contendo vértices que não foram visitados
+    componentes = 1       # Contador de componentes
 
+    # insere todos os vértices em naoVisitados
     for i in range (len(grafo)):
         naoVisitados.append(i)
 
     while len(fila_busca) > 0:
         vertice = fila_busca.pop(0)
 
+        # verifica se o nó já foi visitado
         if vertice in naoVisitados:
             naoVisitados.remove(vertice)
             adjNaoVisitados = set(grafo[vertice]).intersection(naoVisitados)
             fila_busca.extend(adjNaoVisitados)
 
+        #Verifica se algum vértice não foi visitado quando a fila está vazia
         if len(naoVisitados) > 0 and len(fila_busca) == 0:
             componentes += 1
             novoVertice = naoVisitados[0]
