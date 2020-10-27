@@ -41,6 +41,8 @@ def contadorComponentes (grafo, inicio):
         # verifica se o nó já foi visitado
         if vertice in naoVisitados:
             naoVisitados.remove(vertice)
+            # Compara a lista de adjacentes com os vértices não percorridos
+            # Retornando apenas os vértices não verificados (intersecção)
             adjNaoVisitados = set(grafo[vertice]).intersection(naoVisitados)
             fila_busca.extend(adjNaoVisitados)
 
