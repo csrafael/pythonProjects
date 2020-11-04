@@ -26,6 +26,25 @@ def busca_largura (grafo, inicio, fim):
             for vizinho in adjNaoVisitados:
                 pais[vizinho] = vertice
 
+def busca_largura_ciclo (grafo, inicio):
+        fila_busca = [inicio]
+        visitados = caminho = []
+        pais = {}
+        count_ciclos = 0
+        while len(fila_busca) > 0:
+            vertice = fila_busca.pop(0)
+
+            if vertice not in visitados:
+                visitados.append(vertice)
+                caminho.append(vertice)
+                adjNaoVisitados = set(grafo[vertice]).difference(visitados)
+                adjVisitados = set(grafo[vertice]).intersection(visitados)
+                if (len(adjVisitados)-1) > 0:
+                    count_ciclos += len(adjVisitados)-1
+                fila_busca.extend(adjNaoVisitados)
+                for vizinho in adjNaoVisitados:
+                    pais[vizinho] = vertice
+
 def busca_profundidade (grafo, inicio, fim, caminho):
 
     caminho.append(inicio)

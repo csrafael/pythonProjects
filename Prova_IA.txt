@@ -1,0 +1,54 @@
+PROVA IA
+1.
+  A Deep Blue foi uma maquina de jogar xadrez desenvolvida pela IBM que tinha a capacidade de analisar 200 milhões de movimentos por segundo, além de possuir um banco de dados com milhares de partidas.
+  Assim, com seu poder de processamento, o Deep Blue ganhou.
+
+  The Darpa grand challenge foi uma competição de carros autonomos, desenvolvido pela agencia de pesquisa militar Estadounidense.
+  Este assunto é relevante pois o evento promove pesquisa e desenvolvimento em inteligência artificial no contexto de carros autonomos.
+
+2. Desempenho:
+  Preciso - o Agente enfermeiro deve acertar o diagnóstico de maneira consistente, garantindo que os avisos são reais.
+  Rápido - É necessário que o agente leia e processe os dados rapidamente a fim de emitir um alerta no menor tempo possível
+  Estável - O agente deve ficar ativo durante o maior tempo possível a fim de monitorar o paciente no periodo 24/7
+
+Atuadores:
+  Ler, Sinalizar, Alertar
+  O agente deve ser capaz de ler os prontuários, exames e outros documentos que constam no histórico do paciente.
+  Também deve sinalizar constantemente a situação do paciente, informando seu estado. Caso tenha qualquer sinal de problema, deve emitir um alerta para a equipe medica.
+
+Sensores:
+  Monitor cardíaco que colhe os principais sinais do paciente, como pressão arterial, oxigenação e etc. Câmera a fim de monitorar o comportamento do paciente.
+  Scanner, caso o hospital ainda trabalhe com prontuários e exames impressos. Do contrário, não seria necessário, uma vez que já estaria disponível no banco de dados.
+  Não vejo a necessidade de outros sensores para este agente, pois demais sensores entrariam na ação de coletar exames, que não é uma função do enfermeiro.
+
+
+3.
+  a) Os nós expandidos são:
+    h0 : S -> B -> D -> C -> -> A -> G
+    h1 : S -> B -> C -> G
+    h2 : S -> B -> D -> G
+
+  b) Os caminhos são:
+    h0 : S -> B -> C -> G
+    h1 : S -> B -> C -> G
+    h2 : S -> B -> D -> G
+
+  c) Uma função é admissível quando h(n) é menor ou igual ao custo real até o objetivo, para cada nó n.
+  Assim, apenas as heurísticas h0 e h1 são admissíveis, pois elas são otimistas para todos os vértices, assim, h(n) <= c(n) (função custo real).
+  A h2 falha no vértice C onde o custo até G é menor que o valor da heurística.
+
+
+4.
+  No algoritmo de busca em profundidade basta identificar se existe uma aresta de retorno, isto é, verificar se algum vértice nos níveis mais baixos (mais próximos da folha), possuem uma aresta que conecta à vértices já visitados.
+  Na busca em largura, basta verificar se existe uma aresta que conecta a qualquer vértice visitado, diferente do nó pai.
+
+5.
+  a) B -> A -> D -> C -> E. Custo total: 1450
+  b) B -> E -> C -> D -> A. Custo total: 1300
+  c) o caminho de a), da busca gulosa, é inversa do caminho de b), de A*. Com essa heurística os vértices no mesmo nível da árvore terão o mesmo h(), sempre desempatando pela ordem alfabética.
+  Como a busca A* também utiliza o custo real faz com que seja mais eficiente e não depende tanto do critério de ordem alfabética, como a busca gulosa.
+  Vale lembrar que esta heurística não é admissível, mesmo que tenha retornado o caminho ótimo, não era garantido.
+6.
+  a)
+  b) A -> C -> I -> M -> D -> N -> B -> O -> R
+  c) A -> C -> I -> M -> O -> R Custo total: 270
