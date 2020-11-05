@@ -24,48 +24,47 @@ def min (x, y):
 
 def DFS (grafo, raiz):
 
-    global visitado, pred, ordem
+    global nVisitado, pred, ordem
 
     for u in range ( len(grafo) ):
+        nVisitado.append(u)
         pred.append(-1)
         ordem.append(-1)
-        low.append(999)
+        low.append(-1)
 
     pred[raiz] = raiz
 
     DFS_Corte(grafo, raiz)
 
 
-def DFS_Corte (grafo, raiz):
-    global visitado, count, ord, low, pred, cortes
+def DFS_Corte (grafo, u):
+    global nVisitado, count, ord, low, pred, cortes
 
-    visitado.append(raiz)
     count = count + 1
-    ordem[raiz] = count
-    low[raiz] = count
+    ordem[u] = count
+    low[u] = count
 
-    print('VISITADO', visitado)
-    print('COUNT', count)
-    print('ORDEM', ordem[raiz])
-    print('LOW', low[raiz])
+    nVisitado.remove(u)
 
-    print('ADJ', grafo[raiz])
+    if len(grafo[u])>2 and pred[u] == u:
+        cortes.append(u)
 
-
-    for v in grafo[raiz]:
-        if v not in visitado:
-            pred[v] = raiz
+    for v in grafo[u]:
+        if v in nVisitado:
+            pred[v] = u
             DFS_Corte(grafo,v)
-            print('LOW V',low[v])
-            print('ORDEM V', ordem[v])
-            if (low[v] == ordem[v]):
-                cortes.append(v)
-            low[raiz] = min(low[raiz], low[v])
-            if ordem[raiz] == 1 and len(grafo[raiz])>1:
-                cortes.append(raiz)
+
+            if low[v] == ordem[v] and len(grafo[u])>=2 and u not in cortes:
+                cortes.append(u)
+
+            low[u] = min(low[u], low[v])
         else:
-            if v != pred[raiz]:
-                low[raiz] = min(low[raiz], ordem[v])
+            if v != pred[u]:
+                low[u] = min(low[u], ordem[v])
+
+    if len(nVisitado) > 0 and pred[u] == u:
+        pred[nVisitado[0]] = nVisitado[0]
+        DFS_Corte(grafo,nVisitado[0])
 
 # inicialização das variáveis
 n = 1               #numero de vertices - numero de amigos
@@ -74,7 +73,7 @@ count = 0
 grafo = []          #matriz para armazenar a lista de adjacentes
 ordem = []
 pred = []
-visitado = []
+nVisitado = []
 cortes = []
 low = []
 
@@ -96,9 +95,7 @@ for i in range(m):
     grafo[v].append(u)
 
 DFS(grafo,0)
-print ('LOW ', low)
-print ('VISITADO ', visitado)
-print('PRED', pred)
+
 print ("# de alvos possiveis:",len(cortes))
 for i in range (len(cortes)):
     print(cortes[i])
