@@ -2,7 +2,7 @@
 import math
 
 def entropy(self):
-    print('oi');
+    print('oi')
 
 def gain(self):
-    print('oi');
+    print('oi')
